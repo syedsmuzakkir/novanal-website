@@ -1,0 +1,51 @@
+# Node modules
+node_modules/
+
+# Build output
+dist/
+build/
+
+# Vite cache
+.vite/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Optional npm cache directory
+.npm/
+
+# Environment variables
+.env
+.env.*.local
+.env.local
+
+# VS Code settings
+.vscode/
+
+# Mac system files
+.DS_Store
+
+# Linux file
+*.swp
+
+# IDEs
+.idea/
+*.iml
+
+# Testing coverage
+coverage/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Yarn v2
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
