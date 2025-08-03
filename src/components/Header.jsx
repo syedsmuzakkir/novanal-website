@@ -245,7 +245,10 @@ const Header = () => {
   const serviceItems = [
     { id: "statistical-programming", label: "Statistical Programming (SAS)" },
     { id: "data-management", label: "Data Management" },
-    { id: "clinical-operations", label: "Clinical Operations" }
+    { id: "clinical-operations", label: "Clinical Operations" },
+    { id: "oncology-hematology", label: "ONCOLOGY & HEMATOLOGY" }
+
+
   ]
 
   return (

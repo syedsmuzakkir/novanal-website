@@ -37,7 +37,7 @@ const Footer = () => {
               We use our skills and extensive experience for the development of ambitious solutions for your projects in
               the pharmaceutical industry.
             </p>
-            <div className="text-xl sm:text-2xl lg:text-3xl font-bold text-blue-400 leading-tight from-pink-600 via-blue-700 to-pink-800"
+            <div className="text-xl sm:text-2xl lg:text-3xl font-bold  leading-tight bg-gradient-to-r from-pink-600 via-blue-700 to-pink-800 bg-clip-text text-transparent"
              >
               <span className="block sm:inline">Novanal Science</span>
               <span className="block sm:inline sm:ml-1">& Technologies</span>
@@ -139,15 +139,14 @@ const Footer = () => {
                     href="tel:+917893067967"
                     className="text-slate-300 hover:text-white transition-colors duration-300 text-sm sm:text-base"
                   >
-                    +91 78930 67967
+                    +91 7801072017
                   </a>
                 </div>
               </li>
               <li className="flex items-start justify-center md:justify-start">
                 <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-blue-600 mr-3 sm:mr-4 mt-1 flex-shrink-0" />
                 <div className="text-slate-300 text-sm sm:text-base leading-relaxed">
-                  Plot no: 1027&1028, flatno: G1, Sai nilayam, Sri venkataramana colony, kphb 9th phase, gokul plots,
-                  Hyderabad-500085
+                  8-1-332-3/B/L, 7 Tombs Rd, JPB Colony, Aravind Nagar Colony, Shaikpet, Hyderabad, Telangana 500008, Hyderabad, Telangana 500031
                 </div>
               </li>
             </ul>
