@@ -2007,6 +2007,17 @@ const Services = () => {
   }
 
   const projects = [
+
+    {
+      id: 4,
+      title: "Oncology Phase III Trial Analysis",
+      description: "Comprehensive statistical analysis for a global solid tumor study.",
+      details: "Provided end-to-end statistical programming and analysis for a multinational Phase III oncology trial evaluating a novel immunotherapy. Developed specialized SAS macros for RECIST 1.1 tumor response analysis and implemented complex survival analysis methodologies including Kaplan-Meier estimates and Cox proportional hazards models.",
+      icon: <Activity className="h-6 w-6 text-purple-600" />,
+      stats: "32 countries | 850+ patients analyzed",
+      image: "/images/oncology1.jpg",
+      technologies: ["RECIST 1.1", "Survival Analysis", "CDISC ADaM", "Safety Signal Detection"]
+    },
     {
       id: 1,
       title: "ISS Pooling Studies",
@@ -2037,16 +2048,16 @@ const Services = () => {
       image: "/images/hepathic.webp",
       technologies: ["Child-Pugh Classification", "PK Modeling", "Dose Adjustment Algorithms", "Liver Function Biomarkers"]
     },
-    {
-      id: 4,
-      title: "Oncology Phase III Trial Analysis",
-      description: "Comprehensive statistical analysis for a global solid tumor study.",
-      details: "Provided end-to-end statistical programming and analysis for a multinational Phase III oncology trial evaluating a novel immunotherapy. Developed specialized SAS macros for RECIST 1.1 tumor response analysis and implemented complex survival analysis methodologies including Kaplan-Meier estimates and Cox proportional hazards models.",
-      icon: <Activity className="h-6 w-6 text-purple-600" />,
-      stats: "32 countries | 850+ patients analyzed",
-      image: "/images/oncology1.jpg",
-      technologies: ["RECIST 1.1", "Survival Analysis", "CDISC ADaM", "Safety Signal Detection"]
-    }
+    // {
+    //   id: 4,
+    //   title: "Oncology Phase III Trial Analysis",
+    //   description: "Comprehensive statistical analysis for a global solid tumor study.",
+    //   details: "Provided end-to-end statistical programming and analysis for a multinational Phase III oncology trial evaluating a novel immunotherapy. Developed specialized SAS macros for RECIST 1.1 tumor response analysis and implemented complex survival analysis methodologies including Kaplan-Meier estimates and Cox proportional hazards models.",
+    //   icon: <Activity className="h-6 w-6 text-purple-600" />,
+    //   stats: "32 countries | 850+ patients analyzed",
+    //   image: "/images/oncology1.jpg",
+    //   technologies: ["RECIST 1.1", "Survival Analysis", "CDISC ADaM", "Safety Signal Detection"]
+    // }
   ]
 
   return (
