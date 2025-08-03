@@ -184,7 +184,399 @@
 
 
 
-"use client"
+// "use client"
+
+// import { useState, useEffect } from "react"
+// import { Menu, X, ChevronDown } from "lucide-react"
+
+// const Header = () => {
+//   const [isMenuOpen, setIsMenuOpen] = useState(false)
+//   const [isScrolled, setIsScrolled] = useState(false)
+//   const [activeTab, setActiveTab] = useState("hero")
+
+//   const toggleMenu = () => {
+//     setIsMenuOpen(!isMenuOpen)
+//   }
+
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       setIsScrolled(window.scrollY > 50)
+      
+//       // Update active tab based on scroll position
+//       const sections = ["hero", "about", "statistical-programming", "data-management", "clinical-operations", "contact-form"]
+//       const currentSection = sections.find(section => {
+//         const element = document.getElementById(section)
+//         if (element) {
+//           const rect = element.getBoundingClientRect()
+//           return rect.top <= 100 && rect.bottom >= 100
+//         }
+//         return false
+//       })
+      
+//       if (currentSection) {
+//         setActiveTab(currentSection)
+//       }
+//     }
+    
+//     window.addEventListener("scroll", handleScroll)
+//     return () => window.removeEventListener("scroll", handleScroll)
+//   }, [])
+
+//   const scrollToSection = (sectionId) => {
+//     const element = document.getElementById(sectionId)
+//     if (element) {
+//       const headerHeight = 80
+//       const elementPosition = element.offsetTop - headerHeight
+//       window.scrollTo({
+//         top: elementPosition,
+//         behavior: "smooth",
+//       })
+//     }
+//     setActiveTab(sectionId)
+//     setIsMenuOpen(false)
+//   }
+
+//   const navItems = [
+//     { id: "hero", label: "Home" },
+//     { id: "about", label: "About Us" },
+//     { id: "contact-form", label: "Contact" }
+//   ]
+
+//   const serviceItems = [
+//     { id: "statistical-programming", label: "Statistical Programming (SAS)" },
+//     { id: "data-management", label: "Data Management" },
+//     { id: "clinical-operations", label: "Clinical Operations" },
+//     { id: "oncology-hematology", label: "ONCOLOGY & HEMATOLOGY" }
+
+
+//   ]
+
+//   return (
+//     <header
+//       className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+//         isScrolled 
+//           ? "bg-white/95 backdrop-blur-sm shadow-lg" 
+//           : "bg-white shadow-md"
+//       }`}
+//     >
+//       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+//         <div className="flex justify-between items-center py-3 sm:py-4">
+//           {/* Logo */}
+//           <div 
+//             className="flex items-center cursor-pointer hover:opacity-90 transition-opacity duration-200"  
+//             onClick={() => scrollToSection("hero")}
+//           >
+//             <img
+//               src="/images/novanal-logo.png"
+//               alt="Novanal Science & Technologies"
+//               className="h-8 sm:h-10 md:h-12  mr-3"
+//             />
+//           </div>
+
+//           {/* Desktop Navigation */}
+//           <nav className="hidden lg:flex items-center space-x-2">
+//             {navItems.map((item) => (
+//               <button
+//                 key={item.id}
+//                 onClick={() => scrollToSection(item.id)}
+//                 className={`px-4 py-2 rounded-lg font-semibold text-sm xl:text-base transition-all duration-200 ${
+//                   activeTab === item.id
+//                     ? "bg-blue-600 text-white shadow-md"
+//                     : "text-slate-700 hover:text-blue-600 hover:bg-blue-50"
+//                 }`}
+//               >
+//                 {item.label}
+//               </button>
+//             ))}
+            
+//             {/* Services Dropdown */}
+//             <div className="relative group">
+//               <button 
+//                 className={`flex items-center px-4 py-2 rounded-lg font-semibold text-sm xl:text-base transition-all duration-200 ${
+//                   serviceItems.some(service => activeTab === service.id)
+//                     ? "bg-blue-600 text-white shadow-md"
+//                     : "text-slate-700 hover:text-blue-600 hover:bg-blue-50"
+//                 }`}
+//               >
+//                 Our Services
+//                 <ChevronDown className="ml-1 h-4 w-4" />
+//               </button>
+              
+//               <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-slate-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+//                 <div className="py-2">
+//                   {serviceItems.map((service) => (
+//                     <button
+//                       key={service.id}
+//                       onClick={() => scrollToSection(service.id)}
+//                       className={`block w-full text-left px-4 py-3 text-sm transition-colors duration-200 ${
+//                         activeTab === service.id
+//                           ? "bg-blue-600 text-white"
+//                           : "text-slate-700 hover:bg-blue-50 hover:text-blue-600"
+//                       }`}
+//                     >
+//                       {service.label}
+//                     </button>
+//                   ))}
+//                 </div>
+//               </div>
+//             </div>
+//           </nav>
+
+//           {/* Mobile Menu Toggle */}
+//           <button
+//             onClick={toggleMenu}
+//             className="lg:hidden p-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200"
+//           >
+//             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+//           </button>
+//         </div>
+
+//         {/* Mobile Navigation */}
+//         {isMenuOpen && (
+//           <div className="lg:hidden bg-white border-t border-slate-200 animate-in slide-in-from-top-2 duration-300">
+//             <nav className="py-4 space-y-1">
+//               {navItems.map((item) => (
+//                 <button
+//                   key={item.id}
+//                   onClick={() => scrollToSection(item.id)}
+//                   className={`block w-full text-left px-4 py-3 font-semibold transition-colors duration-200 ${
+//                     activeTab === item.id
+//                       ? "bg-blue-600 text-white"
+//                       : "text-slate-700 hover:bg-blue-50 hover:text-blue-600"
+//                   }`}
+//                 >
+//                   {item.label}
+//                 </button>
+//               ))}
+              
+//               <div className="px-4 py-2">
+//                 <div className="text-slate-700 font-semibold mb-2 text-sm uppercase tracking-wide">Our Services</div>
+//                 <div className="pl-4 space-y-1">
+//                   {serviceItems.map((service) => (
+//                     <button
+//                       key={service.id}
+//                       onClick={() => scrollToSection(service.id)}
+//                       className={`block w-full text-left py-2 px-3 rounded transition-colors duration-200 ${
+//                         activeTab === service.id
+//                           ? "bg-blue-600 text-white"
+//                           : "text-slate-600 hover:text-blue-600 hover:bg-blue-50"
+//                       }`}
+//                     >
+//                       {service.label}
+//                     </button>
+//                   ))}
+//                 </div>
+//               </div>
+//             </nav>
+//           </div>
+//         )}
+//       </div>
+//     </header>
+//   )
+// }
+
+// export default Header
+
+
+
+
+
+// import { useState, useEffect } from "react"
+// import { Menu, X, ChevronDown } from "lucide-react"
+
+// const Header = () => {
+//   const [isMenuOpen, setIsMenuOpen] = useState(false)
+//   const [isScrolled, setIsScrolled] = useState(false)
+//   const [activeTab, setActiveTab] = useState("hero")
+
+//   const toggleMenu = () => {
+//     setIsMenuOpen(!isMenuOpen)
+//   }
+
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       setIsScrolled(window.scrollY > 50)
+      
+//       // Update active tab based on scroll position
+//       const sections = ["hero", "about", "statistical-programming", "data-management", "clinical-operations", "contact-form"]
+//       const currentSection = sections.find(section => {
+//         const element = document.getElementById(section)
+//         if (element) {
+//           const rect = element.getBoundingClientRect()
+//           return rect.top <= 100 && rect.bottom >= 100
+//         }
+//         return false
+//       })
+      
+//       if (currentSection) {
+//         setActiveTab(currentSection)
+//       }
+//     }
+    
+//     window.addEventListener("scroll", handleScroll)
+//     return () => window.removeEventListener("scroll", handleScroll)
+//   }, [])
+
+//   const scrollToSection = (sectionId) => {
+//     const element = document.getElementById(sectionId)
+//     if (element) {
+//       const headerHeight = 80
+//       const elementPosition = element.offsetTop - headerHeight
+//       window.scrollTo({
+//         top: elementPosition,
+//         behavior: "smooth",
+//       })
+//     }
+//     setActiveTab(sectionId)
+//     setIsMenuOpen(false)
+//   }
+
+//   const navItems = [
+//     { id: "hero", label: "Home" },
+//     { id: "about", label: "About Us" },
+//     { id: "contact-form", label: "Contact" },
+//     {id:"projects", label:"projects"}
+//   ]
+
+//   const serviceItems = [
+//     { id: "statistical-programming", label: "Statistical Programming (SAS)" },
+//     { id: "r-programming", label: "R-Programming Clinical" },
+//     { id: "fsp-analytics", label: "Global FSP Analytics" },
+//     { id: "data-management", label: "Data Management" },
+//     { id: "clinical-operations", label: "Clinical Operations" },
+
+
+//   ]
+
+//   return (
+//     <header
+//       className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+//         isScrolled 
+//           ? "bg-white/95 backdrop-blur-sm shadow-lg" 
+//           : "bg-white shadow-md"
+//       }`}
+//     >
+//       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+//         <div className="flex justify-between items-center py-3 sm:py-4">
+//           {/* Logo */}
+//           <div 
+//             className="flex items-center cursor-pointer hover:opacity-90 transition-opacity duration-200"  
+//             onClick={() => scrollToSection("hero")}
+//           >
+//             <img
+//               src="/images/novanal-logo.png"
+//               alt="Novanal Science & Technologies"
+//               className="h-8 sm:h-10 md:h-12 mr-3"
+//             />
+//           </div>
+
+//           {/* Desktop Navigation */}
+//           <nav className="hidden lg:flex items-center space-x-2">
+//             {navItems.map((item) => (
+//               <button
+//                 key={item.id}
+//                 onClick={() => scrollToSection(item.id)}
+//                 className={`px-4 py-2 rounded-xl font-medium text-sm xl:text-base transition-all duration-200 ${
+//                   activeTab === item.id
+//                     ? "bg-gradient-to-r from-pink-500 to-blue-600 text-white shadow-md"
+//                     : "text-slate-700 hover:text-blue-600 hover:bg-blue-50"
+//                 }`}
+//               >
+//                 {item.label}
+//               </button>
+//             ))}
+            
+//             {/* Services Dropdown */}
+//             <div className="relative group">
+//               <button 
+//                 className={`flex items-center px-4 py-2 rounded-xl font-medium text-sm xl:text-base transition-all duration-200 ${
+//                   serviceItems.some(service => activeTab === service.id)
+//                     ? "bg-gradient-to-r from-pink-500 to-blue-600 text-white shadow-md"
+//                     : "text-slate-700 hover:text-blue-600 hover:bg-blue-50"
+//                 }`}
+//               >
+//                 Our Services
+//                 <ChevronDown className="ml-1 h-4 w-4 transition-transform duration-200 group-hover:rotate-180" />
+//               </button>
+              
+//               <div className="absolute top-full left-0 mt-1 w-72 bg-white rounded-xl shadow-lg border border-slate-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 transform group-hover:translate-y-0 translate-y-1">
+//                 <div className="p-1.5">
+//                   {serviceItems.map((service) => (
+//                     <button
+//                       key={service.id}
+//                       onClick={() => scrollToSection(service.id)}
+//                       className={`block w-full text-left px-4 py-2.5 text-sm transition-colors duration-200 rounded-lg ${
+//                         activeTab === service.id
+//                           ? "bg-gradient-to-r from-pink-500 to-blue-600 text-white"
+//                           : "text-slate-700 hover:bg-blue-50 hover:text-blue-600"
+//                       }`}
+//                     >
+//                       {service.label}
+//                     </button>
+//                   ))}
+//                 </div>
+//               </div>
+//             </div>
+//           </nav>
+
+//           {/* Mobile Menu Toggle */}
+//           <button
+//             onClick={toggleMenu}
+//             className="lg:hidden p-2 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200"
+//           >
+//             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+//           </button>
+//         </div>
+
+//         {/* Mobile Navigation */}
+//         {isMenuOpen && (
+//           <div className="lg:hidden bg-white border-t border-slate-200 animate-in slide-in-from-top-2 duration-300">
+//             <nav className="py-4 space-y-1">
+//               {navItems.map((item) => (
+//                 <button
+//                   key={item.id}
+//                   onClick={() => scrollToSection(item.id)}
+//                   className={`block w-full text-left px-4 py-3 font-medium transition-colors duration-200 rounded-xl mx-2 ${
+//                     activeTab === item.id
+//                       ? "bg-gradient-to-r from-pink-500 to-blue-600 text-white"
+//                       : "text-slate-700 hover:bg-blue-50 hover:text-blue-600"
+//                   }`}
+//                 >
+//                   {item.label}
+//                 </button>
+//               ))}
+              
+//               <div className="px-4 py-2">
+//                 <div className="text-slate-700 font-medium mb-2 text-sm px-2">Our Services</div>
+//                 <div className="space-y-1.5">
+//                   {serviceItems.map((service) => (
+//                     <button
+//                       key={service.id}
+//                       onClick={() => scrollToSection(service.id)}
+//                       className={`block w-full text-left py-2.5 px-4 rounded-xl transition-colors duration-200 ${
+//                         activeTab === service.id
+//                           ? "bg-gradient-to-r from-pink-500 to-blue-600 text-white"
+//                           : "text-slate-600 hover:text-blue-600 hover:bg-blue-50"
+//                       }`}
+//                     >
+//                       {service.label}
+//                     </button>
+//                   ))}
+//                 </div>
+//               </div>
+//             </nav>
+//           </div>
+//         )}
+//       </div>
+//     </header>
+//   )
+// }
+
+// export default Header
+
+
+
+
 
 import { useState, useEffect } from "react"
 import { Menu, X, ChevronDown } from "lucide-react"
@@ -193,9 +585,18 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [activeTab, setActiveTab] = useState("hero")
+  const [isServicesOpen, setIsServicesOpen] = useState(false)
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen)
+    // Close services dropdown when mobile menu closes
+    if (isMenuOpen) {
+      setIsServicesOpen(false)
+    }
+  }
+
+  const toggleServices = () => {
+    setIsServicesOpen(!isServicesOpen)
   }
 
   useEffect(() => {
@@ -203,7 +604,7 @@ const Header = () => {
       setIsScrolled(window.scrollY > 50)
       
       // Update active tab based on scroll position
-      const sections = ["hero", "about", "statistical-programming", "data-management", "clinical-operations", "contact-form"]
+      const sections = ["hero", "about", "statistical-programming", "data-management", "clinical-operations", "contact-form", "projects"]
       const currentSection = sections.find(section => {
         const element = document.getElementById(section)
         if (element) {
@@ -234,21 +635,22 @@ const Header = () => {
     }
     setActiveTab(sectionId)
     setIsMenuOpen(false)
+    setIsServicesOpen(false)
   }
 
   const navItems = [
     { id: "hero", label: "Home" },
     { id: "about", label: "About Us" },
-    { id: "contact-form", label: "Contact" }
+    { id: "projects", label: "Projects" },
+    { id: "contact-form", label: "Contact" },
   ]
 
   const serviceItems = [
     { id: "statistical-programming", label: "Statistical Programming (SAS)" },
+    { id: "r-programming", label: "R-Programming Clinical" },
+    { id: "fsp-analytics", label: "Global FSP Analytics" },
     { id: "data-management", label: "Data Management" },
     { id: "clinical-operations", label: "Clinical Operations" },
-    { id: "oncology-hematology", label: "ONCOLOGY & HEMATOLOGY" }
-
-
   ]
 
   return (
@@ -269,7 +671,7 @@ const Header = () => {
             <img
               src="/images/novanal-logo.png"
               alt="Novanal Science & Technologies"
-              className="h-8 sm:h-10 md:h-12  mr-3"
+              className="h-8 sm:h-10 md:h-12 mr-3"
             />
           </div>
 
@@ -279,9 +681,9 @@ const Header = () => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`px-4 py-2 rounded-lg font-semibold text-sm xl:text-base transition-all duration-200 ${
+                className={`px-4 py-2 rounded-xl font-medium text-sm xl:text-base transition-all duration-200 ${
                   activeTab === item.id
-                    ? "bg-blue-600 text-white shadow-md"
+                    ? "bg-gradient-to-r from-pink-500 to-blue-600 text-white shadow-md"
                     : "text-slate-700 hover:text-blue-600 hover:bg-blue-50"
                 }`}
               >
@@ -292,25 +694,38 @@ const Header = () => {
             {/* Services Dropdown */}
             <div className="relative group">
               <button 
-                className={`flex items-center px-4 py-2 rounded-lg font-semibold text-sm xl:text-base transition-all duration-200 ${
+                onClick={() => {
+                  if (window.innerWidth < 1024) {
+                    toggleServices()
+                  }
+                }}
+                className={`flex items-center px-4 py-2 rounded-xl font-medium text-sm xl:text-base transition-all duration-200 ${
                   serviceItems.some(service => activeTab === service.id)
-                    ? "bg-blue-600 text-white shadow-md"
+                    ? "bg-gradient-to-r from-pink-500 to-blue-600 text-white shadow-md"
                     : "text-slate-700 hover:text-blue-600 hover:bg-blue-50"
                 }`}
               >
                 Our Services
-                <ChevronDown className="ml-1 h-4 w-4" />
+                <ChevronDown className={`ml-1 h-4 w-4 transition-transform duration-200 ${
+                  isServicesOpen ? 'rotate-180' : 'group-hover:rotate-180'
+                }`} />
               </button>
               
-              <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-lg shadow-lg border border-slate-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                <div className="py-2">
+              <div className={`absolute top-full left-0 mt-1 w-72 bg-white rounded-xl shadow-lg border border-slate-200 z-50 ${
+                window.innerWidth >= 1024 
+                  ? 'opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform group-hover:translate-y-0 translate-y-1'
+                  : isServicesOpen 
+                    ? 'block opacity-100 visible translate-y-0'
+                    : 'hidden'
+              }`}>
+                <div className="p-1.5">
                   {serviceItems.map((service) => (
                     <button
                       key={service.id}
                       onClick={() => scrollToSection(service.id)}
-                      className={`block w-full text-left px-4 py-3 text-sm transition-colors duration-200 ${
+                      className={`block w-full text-left px-4 py-2.5 text-sm transition-colors duration-200 rounded-lg ${
                         activeTab === service.id
-                          ? "bg-blue-600 text-white"
+                          ? "bg-gradient-to-r from-pink-500 to-blue-600 text-white"
                           : "text-slate-700 hover:bg-blue-50 hover:text-blue-600"
                       }`}
                     >
@@ -325,7 +740,7 @@ const Header = () => {
           {/* Mobile Menu Toggle */}
           <button
             onClick={toggleMenu}
-            className="lg:hidden p-2 rounded-lg text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200"
+            className="lg:hidden p-2 rounded-xl text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition-all duration-200"
           >
             {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -339,9 +754,9 @@ const Header = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`block w-full text-left px-4 py-3 font-semibold transition-colors duration-200 ${
+                  className={`block w-full text-left px-4 py-3 font-medium transition-colors duration-200 rounded-xl mx-2 ${
                     activeTab === item.id
-                      ? "bg-blue-600 text-white"
+                      ? "bg-gradient-to-r from-pink-500 to-blue-600 text-white"
                       : "text-slate-700 hover:bg-blue-50 hover:text-blue-600"
                   }`}
                 >
@@ -350,15 +765,30 @@ const Header = () => {
               ))}
               
               <div className="px-4 py-2">
-                <div className="text-slate-700 font-semibold mb-2 text-sm uppercase tracking-wide">Our Services</div>
-                <div className="pl-4 space-y-1">
+                <button
+                  onClick={toggleServices}
+                  className={`flex items-center justify-between w-full px-4 py-3 rounded-xl font-medium transition-colors duration-200 ${
+                    serviceItems.some(service => activeTab === service.id)
+                      ? "bg-gradient-to-r from-pink-500 to-blue-600 text-white"
+                      : "text-slate-700 hover:bg-blue-50 hover:text-blue-600"
+                  }`}
+                >
+                  <span>Our Services</span>
+                  <ChevronDown className={`h-4 w-4 transition-transform duration-200 ${
+                    isServicesOpen ? 'rotate-180' : ''
+                  }`} />
+                </button>
+                
+                <div className={`mt-1 space-y-1.5 pl-4 ${
+                  isServicesOpen ? 'block' : 'hidden'
+                }`}>
                   {serviceItems.map((service) => (
                     <button
                       key={service.id}
                       onClick={() => scrollToSection(service.id)}
-                      className={`block w-full text-left py-2 px-3 rounded transition-colors duration-200 ${
+                      className={`block w-full text-left py-2.5 px-4 rounded-xl transition-colors duration-200 ${
                         activeTab === service.id
-                          ? "bg-blue-600 text-white"
+                          ? "bg-gradient-to-r from-pink-500 to-blue-600 text-white"
                           : "text-slate-600 hover:text-blue-600 hover:bg-blue-50"
                       }`}
                     >
